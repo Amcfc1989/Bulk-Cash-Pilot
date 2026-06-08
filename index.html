@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G4S Order Administration Management</title>
+  <!-- Google Fonts for premium typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons for clean, modern vector icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="app-sidebar">
+      <div class="sidebar-header">
+        <button class="toggle-sidebar-btn" id="toggle-sidebar" title="Toggle Sidebar">
+          <i data-lucide="menu"></i>
+        </button>
+        <div class="g4s-logo-container">
+          <svg class="g4s-logo" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+            <text x="5" y="28" font-family="'Outfit', sans-serif" font-weight="900" font-size="28" fill="#1e1e1e">G</text>
+            <text x="28" y="28" font-family="'Outfit', sans-serif" font-weight="900" font-size="28" fill="#d32f2f">4</text>
+            <text x="47" y="28" font-family="'Outfit', sans-serif" font-weight="900" font-size="28" fill="#1e1e1e">S</text>
+            <path d="M 5 33 L 95 33" stroke="#d32f2f" stroke-width="2.5" />
+            <text x="5" y="39" font-family="'Inter', sans-serif" font-size="6.5" font-weight="600" fill="#555" letter-spacing="1">CASH SOLUTIONS</text>
+          </svg>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="nav-item" data-view="home">
+            <a href="#" id="nav-home">
+              <i data-lucide="home"></i>
+              <span class="nav-text">Home Page</span>
+            </a>
+          </li>
+          <li class="nav-item" data-view="services">
+            <a href="#" id="nav-services">
+              <i data-lucide="calendar"></i>
+              <span class="nav-text">Services</span>
+            </a>
+          </li>
+          <li class="nav-item" data-view="tickets">
+            <a href="#" id="nav-tickets">
+              <i data-lucide="tag"></i>
+              <span class="nav-text">Support Tickets</span>
+            </a>
+          </li>
+          <li class="nav-item active" data-view="bag-orders">
+            <a href="#" id="nav-orders">
+              <i data-lucide="shopping-cart"></i>
+              <span class="nav-text">Bag Orders</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#">
+              <i data-lucide="plus-circle"></i>
+              <span class="nav-text">Service Requests</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#">
+              <i data-lucide="printer"></i>
+              <span class="nav-text">e-Receipts</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#">
+              <i data-lucide="search"></i>
+              <span class="nav-text">Postcode Lookup</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#">
+              <i data-lucide="edit-3"></i>
+              <span class="nav-text">Online CARF</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#">
+              <i data-lucide="check-square"></i>
+              <span class="nav-text">NCD</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#">
+              <i data-lucide="bar-chart-2"></i>
+              <span class="nav-text">Workflows</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#">
+              <i data-lucide="list"></i>
+              <span class="nav-text">Master Data</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#">
+              <i data-lucide="log-out"></i>
+              <span class="nav-text">Redirection</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Navbar -->
+      <header class="top-navbar">
+        <div class="navbar-left">
+          <span class="system-time" id="system-time">2026-06-08 15:27</span>
+        </div>
+        <div class="navbar-right">
+          <div class="customer-select-wrapper">
+            <select id="customer-dropdown" class="customer-dropdown" aria-label="Customer Selection">
+              <option value="" disabled>Select a customer from the drop...</option>
+              <option value="sutton" selected>Test Customer Sutton</option>
+              <option value="preston">Preston Retail Group</option>
+              <option value="swarovski">Swarovski GB Ltd</option>
+              <option value="birmingham">Birmingham Mall Services</option>
+            </select>
+            <button class="clear-customer-btn" id="clear-customer-btn" style="display: block;" title="Clear customer selection">&times;</button>
+          </div>
+          
+          <div class="user-profile">
+            <i data-lucide="user" class="user-icon"></i>
+            <span class="username">G4S User</span>
+          </div>
+          <button class="nav-icon-btn" title="Notifications">
+            <i data-lucide="mail"></i>
+            <span class="badge">3</span>
+          </button>
+          <button class="nav-icon-btn" title="Help / FAQ">
+            <i data-lucide="help-circle"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Guilloche / Currency Banner Background -->
+      <div class="hero-banner">
+        <div class="guilloche-overlay"></div>
+        <div class="currency-notes">
+          <div class="currency-note note-20">£20</div>
+          <div class="currency-note note-10">£10</div>
+          <div class="currency-note note-5">£5</div>
+        </div>
+        <div class="breadcrumb-container">
+          <span class="breadcrumb-parent" id="breadcrumb-parent">Order Administration</span> &gt; 
+          <span class="breadcrumb-active" id="breadcrumb-active">New Order</span>
+        </div>
+        <h1 class="page-title" id="page-title-main">New Order</h1>
+        <p class="page-subtitle" id="page-subtitle-main">Management</p>
+      </div>
+
+      <!-- Tabbed Sub-navigation (First tab is now New Order) -->
+      <div class="tab-navigation-container" id="subtabs-bar">
+        <button class="tab-btn active" data-tab="new-order" id="tab-new">New Order</button>
+        <button class="tab-btn" data-tab="administration" id="tab-admin">Order Administration</button>
+        <button class="tab-btn" data-tab="history" id="tab-history">Order History</button>
+      </div>
+
+      <!-- Dynamic Views Container -->
+      <div class="view-content-wrapper">
+        
+        <!-- ================= HOME PAGE VIEW ================= -->
+        <section class="view-section" id="view-home" style="display: none;">
+          <div class="home-container">
+            <div class="card welcome-card">
+              <h2>Welcome to G4S Cash Solutions Portal</h2>
+              <p>Manage your cash collections, order secure bags, and monitor your history seamlessly.</p>
+            </div>
+            
+            <!-- Warning Banner when customer is not selected -->
+            <div class="alert-banner warning" id="customer-warning-banner" style="display: none;">
+              <i data-lucide="info" class="alert-icon"></i>
+              <div class="alert-message">
+                <strong>Attention:</strong> Please search for a customer above to view customer data.
+              </div>
+            </div>
+
+            <!-- Customer Data Display -->
+            <div class="customer-data-grid" id="customer-data-grid" style="display: grid;">
+              <div class="card metric-card">
+                <h3>Active Sites</h3>
+                <p class="metric-value" id="metric-sites-count">4</p>
+                <span class="metric-label">Registered cash drop sites</span>
+              </div>
+              <div class="card metric-card">
+                <h3>Weekly Credit Limit</h3>
+                <p class="metric-value">£4,000.00</p>
+                <span class="metric-label">Standard customer limit</span>
+              </div>
+              <div class="card metric-card">
+                <h3>Ongoing Orders</h3>
+                <p class="metric-value" id="metric-ongoing-count">2</p>
+                <span class="metric-label">Awaiting delivery</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= BAG ORDERS - NEW ORDER VIEW (WIZARD FLOW) ================= -->
+        <section class="view-section" id="view-new-order">
+          <!-- Multi-Step Progress Tracker Bar -->
+          <div class="wizard-progress-container">
+            <div class="wizard-progress-bar">
+              <div class="progress-line"></div>
+              <div class="progress-step active" id="prog-step-1">
+                <div class="circle">1</div>
+                <span class="step-label">Request Selection</span>
+              </div>
+              <div class="progress-step" id="prog-step-2">
+                <div class="circle">2</div>
+                <span class="step-label">Site Selection</span>
+              </div>
+              <div class="progress-step" id="prog-step-3">
+                <div class="circle">3</div>
+                <span class="step-label">Service Date</span>
+              </div>
+              <div class="progress-step" id="prog-step-4">
+                <div class="circle">4</div>
+                <span class="step-label">Confirmation</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 1 & 2: REQUEST & SITE SELECTION PANEL -->
+          <div class="wizard-step-panel active-panel" id="wizard-panel-sites">
+            <div class="sites-selection-layout">
+              <div class="card selection-settings-card">
+                <h3>Request Selection Details</h3>
+                <div class="form-group margin-bottom-20">
+                  <label for="wizard-contract-select">Contract *</label>
+                  <select id="wizard-contract-select">
+                    <option value="3429548" selected>3429548</option>
+                    <option value="1287459">1287459</option>
+                    <option value="8739401">8739401</option>
+                  </select>
+                </div>
+
+                <h3>Please select sites for non scheduled Service Request</h3>
+                
+                <div class="site-dual-list-layout">
+                  <!-- Left Box: Available Sites -->
+                  <div class="dual-list-box">
+                    <label for="wizard-site-list">Available Site(s)</label>
+                    <select id="wizard-site-list" size="8" class="site-listbox-control">
+                      <!-- Loaded via JS based on selected customer -->
+                    </select>
+                    <label class="checkbox-label margin-top-10">
+                      <input type="checkbox" id="show-closed-sites"> Show Closed Sites
+                    </label>
+                  </div>
+
+                  <!-- Middle Action Arrow Button -->
+                  <div class="dual-list-actions">
+                    <button type="button" class="btn btn-dark" id="btn-move-site-right" title="Select Site">
+                      <i data-lucide="arrow-right"></i>
+                    </button>
+                  </div>
+
+                  <!-- Right Box: Selected Sites list -->
+                  <div class="dual-list-box selected-sites-box">
+                    <div class="selected-sites-header">
+                      <span>Selected Sites</span>
+                      <button type="button" class="btn-link text-danger font-size-12" id="btn-remove-all-sites">Remove</button>
+                    </div>
+                    <div class="selected-sites-list-wrapper">
+                      <table class="selected-sites-grid-table">
+                        <tbody id="selected-sites-tbody">
+                          <tr class="empty-selection-row"><td colspan="2" class="center-text text-muted">No Site Selected</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="wizard-footer-row margin-top-20">
+                  <div></div>
+                  <button type="button" class="btn btn-primary" id="btn-sites-continue">Continue <i data-lucide="chevron-right"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: SERVICE DATE CALENDAR PANEL -->
+          <div class="wizard-step-panel" id="wizard-panel-calendar">
+            <div class="calendar-step-layout">
+              <!-- Calendar Left Column -->
+              <div class="card calendar-card">
+                <div class="calendar-header-row">
+                  <div class="calendar-controls-left">
+                    <button type="button" class="btn btn-dark btn-sm" id="btn-cal-prev"><i data-lucide="chevron-left"></i></button>
+                    <button type="button" class="btn btn-secondary btn-sm" id="btn-cal-today">today</button>
+                    <button type="button" class="btn btn-dark btn-sm" id="btn-cal-next"><i data-lucide="chevron-right"></i></button>
+                  </div>
+                  <h2 id="calendar-month-year">June 2026</h2>
+                  <div class="calendar-modes">
+                    <span class="cal-mode-btn">day</span>
+                    <span class="cal-mode-btn">week</span>
+                    <span class="cal-mode-btn active">month</span>
+                  </div>
+                </div>
+
+                <div class="calendar-grid-header">
+                  <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                </div>
+                <div class="calendar-grid-days" id="calendar-grid-days">
+                  <!-- Generated dynamically in JS -->
+                </div>
+              </div>
+
+              <!-- Calendar Right Column: Site Service Info -->
+              <div class="card calendar-details-card">
+                <div class="form-group">
+                  <label for="required-date-display">Required By Date *</label>
+                  <input type="text" id="required-date-display" readonly placeholder="Click a date on calendar..." class="calendar-display-input">
+                </div>
+                <div class="serviceability-guideline">
+                  *Site with red cross are not serviceable and will not be included in the request.
+                </div>
+                
+                <h4 class="margin-top-20">Serviceable Selected Sites</h4>
+                <div class="serviceable-sites-list">
+                  <table class="vertical-details-table">
+                    <thead>
+                      <tr>
+                        <th>Status</th>
+                        <th>Selected Site Name</th>
+                      </tr>
+                    </thead>
+                    <tbody id="calendar-selected-sites-tbody">
+                      <tr><td colspan="2" class="center-text text-muted">No site selected</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="wizard-footer-row margin-top-auto">
+                  <button type="button" class="btn btn-secondary" id="btn-calendar-prev-step"><i data-lucide="chevron-left"></i> Previous</button>
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3.5: OUT OF SCHEDULE SERVICE CONFIRMATION PANEL -->
+          <div class="wizard-step-panel" id="wizard-panel-out-of-schedule">
+            <div class="card confirmation-step-card">
+              <h3>Additional Service Request Outside Schedule</h3>
+              <div class="confirmation-form-layout">
+                <div class="confirmation-left-fields">
+                  <div class="form-group margin-bottom-15">
+                    <label>Contract *</label>
+                    <input type="text" id="confirm-contract-val" readonly value="3429548">
+                  </div>
+                  <div class="form-group margin-bottom-15">
+                    <label>Required By Date *</label>
+                    <input type="text" id="confirm-date-val" readonly value="Mon 07/07/2026">
+                  </div>
+                  <div class="form-group margin-bottom-15">
+                    <label for="confirm-description">Description *</label>
+                    <textarea id="confirm-description" rows="3" placeholder="Please add in any order requirements."></textarea>
+                  </div>
+                </div>
+
+                <div class="confirmation-right-sites">
+                  <table class="vertical-details-table">
+                    <thead>
+                      <tr>
+                        <th>Serviceable</th>
+                        <th>Selected Sites</th>
+                      </tr>
+                    </thead>
+                    <tbody id="confirm-sites-tbody">
+                      <!-- Loaded via JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="confirmation-declaration-box">
+                <label class="checkbox-label font-bold">
+                  <input type="checkbox" id="confirm-declaration-chk"> I confirm that I am submitting an additional Service Request outside my regular scheduled service.
+                </label>
+              </div>
+
+              <div class="wizard-footer-row margin-top-20">
+                <button type="button" class="btn btn-dark" id="btn-confirm-prev-step">Previous</button>
+                <button type="button" class="btn btn-success" id="btn-confirm-next-step">Confirm</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 4: DENOMINATION SELECTION PANEL (FORMER NEW ORDER MAIN VIEW) -->
+          <div class="wizard-step-panel" id="wizard-panel-denominations">
+            <!-- Out of Schedule Alert Warning -->
+            <div class="alert-banner warning margin-bottom-15" id="out-of-schedule-warning-banner" style="display: none;">
+              <i data-lucide="alert-triangle" class="alert-icon"></i>
+              <div class="alert-message">
+                <strong>Additional Service Request:</strong> You are ordering for a date outside your regular scheduled service. Additional charges will apply.
+              </div>
+            </div>
+
+            <div class="new-order-layout">
+              <!-- Left Side: Ordering Form -->
+              <div class="form-container">
+                <!-- Ordering Guidelines Card -->
+                <div class="guidelines-card">
+                  <h3>Ordering Guidelines</h3>
+                  <div class="guidelines-content">
+                    <p>Please note the cut-off for UK mainland orders for delivery Monday – Friday is 11am the working day before delivery, the cut-off for UK mainland orders for weekend delivery is 11am Thursday.</p>
+                    <p>Standing orders will cover the date range specified except Bank Holiday dates (which are excluded).</p>
+                  </div>
+                </div>
+
+                <!-- Order Details Entry (Prefilled and locked) -->
+                <div class="card entry-card">
+                  <h3>Add Order Details</h3>
+                  <form id="new-order-form" onsubmit="return false;">
+                    <div class="form-grid">
+                      <div class="form-group full-width">
+                        <label>Selected Site:</label>
+                        <input type="text" id="locked-site-display" readonly value="No site selected" class="locked-input-control">
+                      </div>
+
+                      <div class="form-group">
+                        <label>Delivery Date:</label>
+                        <input type="text" id="locked-date-display" readonly value="No date selected" class="locked-input-control">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="order-user-select">Select User:</label>
+                        <select id="order-user-select" required>
+                          <option value="" disabled selected>Select a user...</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group selection-list-group">
+                        <label for="product-type-select">Product Selection:</label>
+                        <select id="product-type-select" size="4" class="product-listbox">
+                          <option value="coin" selected>Coin</option>
+                          <option value="notes">Notes</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group selection-details-group">
+                        <div class="inner-form-group">
+                          <label for="denomination-select">Denomination:</label>
+                          <select id="denomination-select">
+                            <!-- Populated by Product Selection -->
+                          </select>
+                        </div>
+                        <div class="inner-form-group margin-top-10">
+                          <label for="product-quantity">Quantity:</label>
+                          <div class="quantity-input-wrapper">
+                            <input type="number" id="product-quantity" min="1" value="1" placeholder="Qty">
+                            <button type="button" class="btn btn-add" id="btn-add-item">add</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <!-- Right Side: Countdown and Order Breakdown -->
+              <div class="breakdown-container">
+                <!-- Countdown Banner -->
+                <div class="countdown-card">
+                  <span class="countdown-title">Order Cut-off Countdown</span>
+                  <div class="countdown-timer">
+                    Next Cut-off for tomorrow: <span class="timer-value">[1 day, 18 hours]</span>
+                  </div>
+                </div>
+
+                <!-- Breakdown Card -->
+                <div class="card breakdown-card">
+                  <h3>Current Order Breakdown</h3>
+                  <div class="breakdown-table-wrapper">
+                    <table class="breakdown-table">
+                      <thead>
+                        <tr>
+                          <th class="checkbox-col"><input type="checkbox" id="select-all-breakdown" aria-label="Select All Items"></th>
+                          <th>Product</th>
+                          <th>Value</th>
+                          <th>Unit Value</th>
+                          <th>Quantity</th>
+                          <th>Total Value</th>
+                        </tr>
+                      </thead>
+                      <tbody id="breakdown-tbody">
+                        <!-- Dynamically added products -->
+                        <tr class="empty-breakdown-row"><td colspan="6" class="center-text">No items added to order</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="breakdown-operations">
+                    <button type="button" class="btn-link text-danger" id="btn-clear-selected-breakdown">Clear Selected</button>
+                  </div>
+
+                  <div class="financial-summary">
+                    <div class="summary-row font-bold">
+                      <span>Total:</span>
+                      <span id="breakdown-total">£0.00</span>
+                    </div>
+                    <div class="summary-row text-muted margin-top-10">
+                      <span><i data-lucide="credit-card" class="inline-icon green-icon"></i> Site Credit Limit:</span>
+                      <span id="site-credit-limit">£4,000.00 (Weekly)</span>
+                    </div>
+                    <div class="summary-row text-muted">
+                      <span><i data-lucide="shield-check" class="inline-icon green-icon"></i> Remaining Site Credit:</span>
+                      <span id="site-remaining-credit" class="font-bold">£4,000.00 (Weekly)</span>
+                    </div>
+                  </div>
+
+                  <!-- Excel Import/Upload Section -->
+                  <div class="excel-upload-box">
+                    <label for="excel-file-path" class="upload-label">Select Excel File:</label>
+                    <div class="upload-controls">
+                      <input type="text" id="excel-file-path" readonly placeholder="No file selected">
+                      <input type="file" id="excel-file-input" accept=".xlsx,.xls,.csv" style="display: none;">
+                      <button type="button" class="btn btn-secondary" id="btn-trigger-upload">Upload</button>
+                    </div>
+                    <a href="#" class="download-template-link" id="btn-download-blank">Download blank order form</a>
+                  </div>
+
+                  <!-- Bottom Form Buttons -->
+                  <div class="form-actions-row">
+                    <button type="button" class="btn btn-danger btn-half" id="btn-clear-form">Clear</button>
+                    <button type="button" class="btn btn-success btn-half" id="btn-submit-order">Submit order</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= BAG ORDERS - ORDER ADMINISTRATION VIEW ================= -->
+        <section class="view-section" id="view-administration" style="display: none;">
+          <div class="order-admin-layout">
+            <!-- Left Column: Ongoing Orders Table -->
+            <div class="table-card">
+              <div class="table-header-row">
+                <h2>Ongoing Orders</h2>
+                <div class="table-actions">
+                  <div class="search-box-wrapper">
+                    <i data-lucide="search" class="search-icon"></i>
+                    <input type="text" id="ongoing-search" class="search-input" placeholder="Search orders...">
+                  </div>
+                  <button class="btn btn-primary" id="btn-export-ongoing">
+                    <i data-lucide="download"></i> Export
+                  </button>
+                </div>
+              </div>
+              
+              <div class="table-scroll-container">
+                <table class="data-table" id="ongoing-orders-table">
+                  <thead>
+                    <tr>
+                      <th data-sort="orderId" class="sortable">Order ID <span class="sort-icon">&#9662;</span></th>
+                      <th data-sort="siteName" class="sortable">G4S Site Name <span class="sort-icon">&#9662;</span></th>
+                      <th data-sort="createdDate" class="sortable">Created Date <span class="sort-icon">&#9662;</span></th>
+                      <th data-sort="requestedDelivery" class="sortable">Requested Delivery <span class="sort-icon">&#9662;</span></th>
+                      <th data-sort="requestedBy" class="sortable">Requested By <span class="sort-icon">&#9662;</span></th>
+                      <th data-sort="orderStatus" class="sortable">Order Status <span class="sort-icon">&#9662;</span></th>
+                      <th data-sort="totalValue" class="sortable">Total Value <span class="sort-icon">&#9662;</span></th>
+                      <th data-sort="standingOrder" class="sortable">Standing order <span class="sort-icon">&#9662;</span></th>
+                    </tr>
+                  </thead>
+                  <tbody id="ongoing-orders-tbody">
+                    <!-- Dynamic Data Rows -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Right Column: Order Details -->
+            <div class="details-panel card">
+              <h3>Order Details</h3>
+              <div class="details-scroll-container">
+                <table class="vertical-details-table">
+                  <tbody>
+                    <tr><th>Order ID</th><td id="detail-order-id">-</td></tr>
+                    <tr><th>Delivery Status</th><td><span class="status-badge" id="detail-delivery-status">-</span></td></tr>
+                    <tr><th>Site name</th><td id="detail-site-name">-</td></tr>
+                    <tr><th>Created</th><td id="detail-created">-</td></tr>
+                    <tr><th>Created By</th><td id="detail-created-by">-</td></tr>
+                    <tr><th>Last Updated</th><td id="detail-last-updated">-</td></tr>
+                    <tr><th>Updated By</th><td id="detail-updated-by">-</td></tr>
+                  </tbody>
+                </table>
+
+                <h4 class="items-header">Items Summary</h4>
+                <table class="details-items-table">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Value</th>
+                      <th>Qty</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody id="detail-items-tbody">
+                    <tr><td colspan="4" class="no-items">Select an order to view breakdown</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="details-actions">
+                <button class="btn btn-secondary btn-full" id="btn-edit-order">Edit order</button>
+                <button class="btn btn-danger btn-full" id="btn-cancel-order">Cancel Order</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= BAG ORDERS - ORDER HISTORY VIEW ================= -->
+        <section class="view-section" id="view-history" style="display: none;">
+          <!-- Filter Search Panel -->
+          <div class="card history-filter-card">
+            <div class="filter-grid">
+              <div class="filter-group">
+                <label for="history-filter-order-id">Order No:</label>
+                <div class="input-with-btn">
+                  <input type="text" id="history-filter-order-id" placeholder="Enter Order No.">
+                  <button type="button" class="btn btn-dark" id="btn-history-search-id">Search</button>
+                </div>
+              </div>
+
+              <div class="filter-group">
+                <label for="history-filter-site-by">Search for site by:</label>
+                <select id="history-filter-site-by">
+                  <option value="id">G4S Site ID</option>
+                  <option value="name">G4S Site Name</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <label for="history-filter-term">Search Term:</label>
+                <input type="text" id="history-filter-term" placeholder="Enter Site ID or Name">
+              </div>
+
+              <div class="filter-group">
+                <label for="history-filter-from">From:</label>
+                <div class="date-input-container">
+                  <input type="date" id="history-filter-from" class="calendar-picker-input">
+                </div>
+              </div>
+
+              <div class="filter-group">
+                <label for="history-filter-to">To:</label>
+                <div class="date-input-container">
+                  <input type="date" id="history-filter-to" class="calendar-picker-input">
+                </div>
+              </div>
+            </div>
+            <div class="filter-actions-row">
+              <a href="#" class="clear-search-link" id="btn-clear-history-filters">Clear Search</a>
+            </div>
+          </div>
+
+          <div class="history-main-layout">
+            <!-- Left: Table and Export Options -->
+            <div class="history-left-column">
+              <!-- History Table -->
+              <div class="table-card">
+                <div class="table-scroll-container">
+                  <table class="data-table" id="history-orders-table">
+                    <thead>
+                      <tr>
+                        <th data-sort="orderId" class="sortable">Order ID <span class="sort-icon">&#9662;</span></th>
+                        <th data-sort="customerName" class="sortable">Customer <span class="sort-icon">&#9662;</span></th>
+                        <th data-sort="siteName" class="sortable">G4S Site Name <span class="sort-icon">&#9662;</span></th>
+                        <th data-sort="requestedDelivery" class="sortable">Requested Delivery <span class="sort-icon">&#9662;</span></th>
+                        <th data-sort="createdDate" class="sortable">Created Date <span class="sort-icon">&#9662;</span></th>
+                        <th data-sort="orderStatus" class="sortable">Order Status <span class="sort-icon">&#9662;</span></th>
+                        <th data-sort="totalValue" class="sortable">Total Value <span class="sort-icon">&#9662;</span></th>
+                        <th>Reuse</th>
+                      </tr>
+                    </thead>
+                    <tbody id="history-orders-tbody">
+                      <!-- Dynamically Loaded Rows -->
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-container" id="history-pagination">
+                  <!-- Generated dynamically -->
+                </div>
+              </div>
+
+              <!-- Export Report Panel -->
+              <div class="card export-report-card">
+                <h3>Export Report</h3>
+                <div class="export-report-form">
+                  <div class="form-group flex-row align-center">
+                    <label for="history-report-type">Report type:</label>
+                    <select id="history-report-type">
+                      <option value="cash-coin">Cash & Coin</option>
+                      <option value="discrepancy">Discrepancy Report</option>
+                      <option value="audit">Audit Log</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group flex-row align-center gap-20">
+                    <label>File type:</label>
+                    <label class="radio-label">
+                      <input type="radio" name="report-file-type" value="excel" checked> Excel
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="report-file-type" value="pdf"> PDF
+                    </label>
+                  </div>
+                  
+                  <button type="button" class="btn btn-secondary" id="btn-export-report-submit">Export Report</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Details panel -->
+            <div class="details-panel card" id="history-details-panel">
+              <h3>Details</h3>
+              <div class="details-scroll-container">
+                <div class="financial-summary-inline">
+                  <div class="inline-summary-row">
+                    <span>Total:</span>
+                    <strong id="history-detail-total">£0.00</strong>
+                  </div>
+                  <div class="inline-summary-row text-muted">
+                    <span>Site Credit Limit:</span>
+                    <span>£4,000.00 (Weekly)</span>
+                  </div>
+                  <div class="inline-summary-row text-muted">
+                    <span>Remaining Site Credit:</span>
+                    <strong id="history-detail-remaining">£4,000.00 (Weekly)</strong>
+                  </div>
+                </div>
+
+                <h4 class="items-header">Items Details</h4>
+                <table class="details-items-table font-size-12">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Value</th>
+                      <th>Unit Value</th>
+                      <th>Quantity</th>
+                      <th>Total Value</th>
+                    </tr>
+                  </thead>
+                  <tbody id="history-detail-items-tbody">
+                    <tr><td colspan="5" class="no-items">Select a history order to view items</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="details-actions">
+                <button class="btn btn-primary btn-full" id="btn-reuse-order">Reuse Selected Order</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal Dialog for Non-Scheduled Delivery Warning -->
+  <div class="modal-backdrop" id="non-schedule-modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <i data-lucide="alert-triangle" class="modal-header-icon text-warning"></i>
+        <h3>Service Schedule Warning</h3>
+      </div>
+      <div class="modal-body">
+        <p>You have selected a delivery date outside your service schedule.</p>
+        <p class="font-bold text-danger margin-top-10">Additional charges may occur.</p>
+        <p class="margin-top-10">Do you want to proceed with this date?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" id="btn-modal-cancel">Cancel</button>
+        <button type="button" class="btn btn-success" id="btn-modal-confirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
